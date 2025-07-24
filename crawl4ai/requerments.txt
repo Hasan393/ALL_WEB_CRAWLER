@@ -1,0 +1,18 @@
+we suggest make it mannually plzz follow the docs of the crawl4ai 
+here is the link ----->"https://github.com/unclecode/crawl4ai"
+
+from there u can find :
+🚀 Quick Start
+Install Crawl4AI:
+
+# Install the package
+pip install -U crawl4ai
+
+# For pre release versions
+pip install crawl4ai --pre
+
+# Run post-installation setup
+crawl4ai-setup
+
+# Verify your installation
+crawl4ai-doctor

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Crawler Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input[type="url"] {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        #result {
+            white-space: pre-wrap;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .loading::after {
+            content: "⌛";
+            animation: loading 1s infinite;
+        }
+        @keyframes loading {
+            0% { content: "⌛"; }
+            50% { content: "⏳"; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Web Crawler Interface</h1>
+        <div class="input-group">
+            <input type="url" id="urlInput" placeholder="Enter URL to crawl..." required>
+            <button onclick="crawlUrl()" id="crawlButton">Crawl</button>
+        </div>
+        <div id="loading" class="loading">Crawling in progress...</div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function crawlUrl() {
+            const urlInput = document.getElementById('urlInput');
+            const button = document.getElementById('crawlButton');
+            const loading = document.getElementById('loading');
+            const result = document.getElementById('result');
+
+            const url = urlInput.value;
+            if (!url) {
+                alert('Please enter a valid URL');
+                return;
+            }
+
+            // Disable input and button while crawling
+            urlInput.disabled = true;
+            button.disabled = true;
+            loading.style.display = 'block';
+            result.textContent = '';
+
+            try {
+                const response = await fetch('http://localhost:8000/crawl', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    result.innerHTML = data.result;
+                } else {
+                    result.textContent = `Error: ${data.detail || 'Failed to crawl the URL'}`;
+                }
+            } catch (error) {
+                result.textContent = `Error: ${error.message}`;
+            } finally {
+                // Re-enable input and button
+                urlInput.disabled = false;
+                button.disabled = false;
+                loading.style.display = 'none';
+            }
+        }
+
+        // Allow pressing Enter to submit
+        document.getElementById('urlInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                crawlUrl();
+            }
+        });
+    </script>
+</body>
+</html>
