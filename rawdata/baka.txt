@@ -1,0 +1,1762 @@
+
+
+<!-- URL: https://docs.crawl4ai.com/core/quickstart/ -->
+
+<!DOCTYPE html><html lang="en" data-theme="dark" class="hydrated" style="scroll-padding-top: 0px;"><head>
+    
+    <meta charset="UTF-8"><style data-styles="">feedback-button,feedback-modal{visibility:hidden}.hydrated{visibility:inherit}</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="generator" content="mkdocs-1.6.0, mkdocs-terminal-4.4.0">
+    
+    <meta name="description" content="🚀🤖 Crawl4AI, Open-source LLM-Friendly Web Crawler &amp; Scraper"> 
+     
+    
+    <link rel="canonical" href="https://docs.crawl4ai.com/core/quickstart/"><link rel="icon" type="image/png" sizes="192x192" href="../../img/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="../../img/android-chrome-512x512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../img/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/png" sizes="48x48" href="../../img/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png">
+
+
+    
+ 
+<title>Quick Start - Crawl4AI Documentation (v0.7.x)</title>
+
+
+<link href="../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+<link href="../../css/fontawesome/css/solid.min.css" rel="stylesheet">
+<link href="../../css/normalize.css" rel="stylesheet">
+<link href="../../css/terminal.css" rel="stylesheet">
+<link href="../../css/theme.css" rel="stylesheet">
+<link href="../../css/theme.tile_grid.css" rel="stylesheet">
+<link href="../../css/theme.footer.css" rel="stylesheet">
+<!-- dark color palette -->
+<link href="../../css/palettes/dark.css" rel="stylesheet">
+
+<!-- page layout -->
+<style>
+/* initially set page layout to a one column grid */
+.terminal-mkdocs-main-grid {
+    display: grid;
+    grid-column-gap: 1.4em;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+/*  
+*   when side navigation is not hidden, use a two column grid.  
+*   if the screen is too narrow, fall back to the initial one column grid layout.
+*   in this case the main content will be placed under the navigation panel. 
+*/
+@media only screen and (min-width: 70em) {
+    .terminal-mkdocs-main-grid {
+        grid-template-columns: 4fr 9fr;
+    }
+}</style>
+
+
+
+    
+    <link href="../../assets/layout.css" rel="stylesheet"> 
+    <link href="../../assets/styles.css" rel="stylesheet"> 
+    <link href="../../assets/highlight.css" rel="stylesheet"> 
+    <link href="../../assets/dmvendor.css" rel="stylesheet"> 
+    <link href="../../assets/feedback-overrides.css" rel="stylesheet">  
+    
+    
+
+<script>
+    document.documentElement.setAttribute("data-theme", "dark");
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pushfeedback/dist/pushfeedback/pushfeedback.css">
+
+<style>
+    :root {
+        /* brand */
+        --feedback-primary-color: #09b5a5;
+        --feedback-highlight-color: #fed500;
+
+
+        /* align with the value you really use in :root */
+        --header-height: 65px;
+
+        /* Push modal content down */
+        --feedback-modal-content-position-top: var(--header-height);
+
+        --feedback-modal-modal-wrapper-z-index: 1100;
+        /*  >  header’s 1000 */
+        --feedback-modal-content-z-index: 1101;
+    }
+
+    feedback-modal::part(overlay) {
+        top: var(--header-height);
+        /* start below header */
+        height: calc(100vh - var(--header-height));
+        /* fill the rest */
+
+
+    }
+</style>
+<script type="module" src="https://cdn.jsdelivr.net/npm/pushfeedback@latest/dist/pushfeedback/pushfeedback.esm.js"></script>
+
+
+    
+    <!-- search css support -->
+<link href="../../css/search/bootstrap-modal.css" rel="stylesheet">
+<!-- search scripts -->
+<script>
+    var base_url = "../..",
+    shortcuts = "{}";
+</script>
+<script src="../../js/jquery/jquery-1.10.1.min.js" defer=""></script>
+<script src="../../js/bootstrap/bootstrap.min.js" defer=""></script>
+<script src="../../js/mkdocs/base.js" defer=""></script>
+    
+    
+    
+    
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-58W0K2ZQ25"></script>
+    
+    <script src="../../assets/gtag.js"></script>
+    
+    <script src="../../assets/highlight.min.js"></script>
+    
+    <script src="../../assets/highlight_init.js"></script>
+    
+    <script src="https://buttons.github.io/buttons.js"></script>
+    
+    <script src="../../assets/toc.js"></script>
+    
+    <script src="../../assets/github_stats.js"></script>
+    
+    <script src="../../assets/selection_ask_ai.js"></script>
+    
+    <script src="../../assets/copy_code.js"></script>
+    
+    <script src="../../assets/floating_ask_ai_button.js"></script>
+    
+    <script src="../../assets/mobile_menu.js"></script>
+    
+    <script src="../../search/main.js"></script>
+    
+
+    
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;display=swap" rel="stylesheet"></head>
+
+<body class="terminal" style=""><div class="container"><button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+    <div class="terminal-nav">
+        <header class="terminal-logo">
+            <div id="mkdocs-terminal-site-name" class="logo terminal-prompt"><a href="https://docs.crawl4ai.com/" class="no-style">Crawl4AI Documentation (v0.7.x)</a></div>
+        </header>
+        
+        <nav class="terminal-menu">
+            
+            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href="../.." class="menu-item " property="item" typeof="WebPage">
+                        <span property="name">Home</span>
+                    </a>
+                    <meta property="position" content="0">
+                </li>
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href="../ask-ai/" class="menu-item " property="item" typeof="WebPage">
+                        <span property="name">Ask AI</span>
+                    </a>
+                    <meta property="position" content="1">
+                </li>
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href="./" class="menu-item active" property="item" typeof="WebPage">
+                        <span property="name">Quick Start</span>
+                    </a>
+                    <meta property="position" content="2">
+                </li>
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href="../examples/" class="menu-item " property="item" typeof="WebPage">
+                        <span property="name">Code Examples</span>
+                    </a>
+                    <meta property="position" content="3">
+                </li>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                    
+                    
+
+
+<li property="itemListElement" typeof="ListItem">
+    <a href="#" class="menu-item" data-toggle="modal" data-target="#mkdocs_search_modal" property="item" typeof="SearchAction">
+        <i aria-hidden="true" class="fa fa-search"></i> <span property="name">Search</span>
+    </a>
+    <meta property="position" content="4">
+</li>
+                    
+            </ul>
+            
+        </nav>
+    </div>
+</div>
+        
+    <div class="container">
+        <div class="terminal-mkdocs-main-grid"><aside id="terminal-mkdocs-side-panel"><button class="mobile-menu-close" aria-label="Close navigation menu">×</button><nav>
+  
+    <ul class="terminal-mkdocs-side-nav-items">
+        
+          
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../..">Home</a>
+        
+    
+    
+    
+  </li>
+        
+          
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../ask-ai/">Ask AI</a>
+        
+    
+    
+    
+  </li>
+        
+          
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+    
+        
+        <span class="
+
+    terminal-mkdocs-side-nav-item--active">Quick Start</span>
+    
+    
+    
+  </li>
+        
+          
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../examples/">Code Examples</a>
+        
+    
+    
+    
+  </li>
+        
+          
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+        
+        
+
+        
+            
+    
+        
+        
+            
+            
+            <span class="
+        
+    
+
+    terminal-mkdocs-side-nav-item terminal-mkdocs-side-nav-section-no-index">Apps</span>
+        
+    
+    
+        
+      
+        
+            <ul class="terminal-mkdocs-side-nav-li-ul">
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../apps/">Demo Apps</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../apps/c4a-script/">C4A-Script Editor</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../apps/llmtxt/">LLM Context Builder</a>
+        
+    
+    </li>
+            
+            
+    </ul>
+        
+    
+  </li>
+        
+          
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+        
+        
+
+        
+            
+    
+        
+        
+            
+            
+            <span class="
+        
+    
+
+    terminal-mkdocs-side-nav-item terminal-mkdocs-side-nav-section-no-index">Setup &amp; Installation</span>
+        
+    
+    
+        
+      
+        
+            <ul class="terminal-mkdocs-side-nav-li-ul">
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../installation/">Installation</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../docker-deployment/">Docker Deployment</a>
+        
+    
+    </li>
+            
+            
+    </ul>
+        
+    
+  </li>
+        
+          
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+        
+        
+
+        
+            
+    
+        
+        
+            
+            
+            <span class="
+        
+    
+
+    terminal-mkdocs-side-nav-item terminal-mkdocs-side-nav-section-no-index">Blog &amp; Changelog</span>
+        
+    
+    
+        
+      
+        
+            <ul class="terminal-mkdocs-side-nav-li-ul">
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../blog/">Blog Home</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="https://github.com/unclecode/crawl4ai/blob/main/CHANGELOG.md">Changelog</a>
+        
+    
+    </li>
+            
+            
+    </ul>
+        
+    
+  </li>
+        
+          
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+        
+        
+
+        
+            
+    
+        
+        
+            
+            
+            <span class="
+        
+    
+
+    terminal-mkdocs-side-nav-item terminal-mkdocs-side-nav-section-no-index">Core</span>
+        
+    
+    
+        
+      
+        
+            <ul class="terminal-mkdocs-side-nav-li-ul">
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../cli/">Command Line Interface</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../simple-crawling/">Simple Crawling</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../deep-crawling/">Deep Crawling</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../adaptive-crawling/">Adaptive Crawling</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../url-seeding/">URL Seeding</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../c4a-script/">C4A-Script</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../crawler-result/">Crawler Result</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../browser-crawler-config/">Browser, Crawler &amp; LLM Config</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../markdown-generation/">Markdown Generation</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../fit-markdown/">Fit Markdown</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../page-interaction/">Page Interaction</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../content-selection/">Content Selection</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../cache-modes/">Cache Modes</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../local-files/">Local Files &amp; Raw HTML</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../link-media/">Link &amp; Media</a>
+        
+    
+    </li>
+            
+            
+    </ul>
+        
+    
+  </li>
+        
+          
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+        
+        
+
+        
+            
+    
+        
+        
+            
+            
+            <span class="
+        
+    
+
+    terminal-mkdocs-side-nav-item terminal-mkdocs-side-nav-section-no-index">Advanced</span>
+        
+    
+    
+        
+      
+        
+            <ul class="terminal-mkdocs-side-nav-li-ul">
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../advanced/advanced-features/">Overview</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../advanced/adaptive-strategies/">Adaptive Strategies</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../advanced/virtual-scroll/">Virtual Scroll</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../advanced/file-downloading/">File Downloading</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../advanced/lazy-loading/">Lazy Loading</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../advanced/hooks-auth/">Hooks &amp; Auth</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../advanced/proxy-security/">Proxy &amp; Security</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../advanced/session-management/">Session Management</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../advanced/multi-url-crawling/">Multi-URL Crawling</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../advanced/crawl-dispatcher/">Crawl Dispatcher</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../advanced/identity-based-crawling/">Identity Based Crawling</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../advanced/ssl-certificate/">SSL Certificate</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../advanced/network-console-capture/">Network &amp; Console Capture</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../advanced/pdf-parsing/">PDF Parsing</a>
+        
+    
+    </li>
+            
+            
+    </ul>
+        
+    
+  </li>
+        
+          
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+        
+        
+
+        
+            
+    
+        
+        
+            
+            
+            <span class="
+        
+    
+
+    terminal-mkdocs-side-nav-item terminal-mkdocs-side-nav-section-no-index">Extraction</span>
+        
+    
+    
+        
+      
+        
+            <ul class="terminal-mkdocs-side-nav-li-ul">
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../extraction/no-llm-strategies/">LLM-Free Strategies</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../extraction/llm-strategies/">LLM Strategies</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../extraction/clustring-strategies/">Clustering Strategies</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../extraction/chunking/">Chunking</a>
+        
+    
+    </li>
+            
+            
+    </ul>
+        
+    
+  </li>
+        
+          
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+        
+        
+
+        
+            
+    
+        
+        
+            
+            
+            <span class="
+        
+    
+
+    terminal-mkdocs-side-nav-item terminal-mkdocs-side-nav-section-no-index">API Reference</span>
+        
+    
+    
+        
+      
+        
+            <ul class="terminal-mkdocs-side-nav-li-ul">
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../api/async-webcrawler/">AsyncWebCrawler</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../api/arun/">arun()</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../api/arun_many/">arun_many()</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../api/parameters/">Browser, Crawler &amp; LLM Config</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../api/crawl-result/">CrawlResult</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../api/strategies/">Strategies</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../api/c4a-script-reference/">C4A-Script Reference</a>
+        
+    
+    </li>
+            
+            
+    </ul>
+        
+    
+  </li>
+        
+    </ul>
+  
+</nav><hr>
+<nav>
+    <ul>
+        <li><a href="#getting-started-with-crawl4ai">Getting Started with Crawl4AI</a></li>
+        <li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-your-first-crawl">2. Your First Crawl</a></li><li><a href="#3-basic-configuration-light-introduction">3. Basic Configuration (Light Introduction)</a></li><li><a href="#4-generating-markdown-output">4. Generating Markdown Output</a></li><li><a href="#5-simple-data-extraction-css-based">5. Simple Data Extraction (CSS-based)</a></li><li><a href="#6-simple-data-extraction-llm-based">6. Simple Data Extraction (LLM-based)</a></li><li><a href="#7-adaptive-crawling-new">7. Adaptive Crawling (New!)</a></li><li><a href="#8-multi-url-concurrency-preview">8. Multi-URL Concurrency (Preview)</a></li><li><a href="#8-dynamic-content-example">8. Dynamic Content Example</a></li><li><a href="#9-next-steps">9. Next Steps</a></li>
+    </ul>
+</nav>
+</aside>
+            <main id="terminal-mkdocs-main-content">
+<section id="mkdocs-terminal-content">
+    <h1 id="getting-started-with-crawl4ai">Getting Started with Crawl4AI</h1>
+<p>Welcome to <strong>Crawl4AI</strong>, an open-source LLM-friendly Web Crawler &amp; Scraper. In this tutorial, you’ll:</p>
+<ol>
+<li>Run your <strong>first crawl</strong> using minimal configuration.  </li>
+<li>Generate <strong>Markdown</strong> output (and learn how it’s influenced by content filters).  </li>
+<li>Experiment with a simple <strong>CSS-based extraction</strong> strategy.  </li>
+<li>See a glimpse of <strong>LLM-based extraction</strong> (including open-source and closed-source model options).  </li>
+<li>Crawl a <strong>dynamic</strong> page that loads content via JavaScript.</li>
+</ol>
+<hr>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>Crawl4AI provides:</p>
+<ul>
+<li>An asynchronous crawler, <strong><code>AsyncWebCrawler</code></strong>.  </li>
+<li>Configurable browser and run settings via <strong><code>BrowserConfig</code></strong> and <strong><code>CrawlerRunConfig</code></strong>.  </li>
+<li>Automatic HTML-to-Markdown conversion via <strong><code>DefaultMarkdownGenerator</code></strong> (supports optional filters).  </li>
+<li>Multiple extraction strategies (LLM-based or “traditional” CSS/XPath-based).</li>
+</ul>
+<p>By the end of this guide, you’ll have performed a basic crawl, generated Markdown, tried out two extraction strategies, and crawled a dynamic page that uses “Load More” buttons or JavaScript updates.</p>
+<hr>
+<h2 id="2-your-first-crawl">2. Your First Crawl</h2>
+<p>Here’s a minimal Python script that creates an <strong><code>AsyncWebCrawler</code></strong>, fetches a webpage, and prints the first 300 characters of its Markdown output:</p>
+<div class="highlight"><pre><span></span><code data-highlighted="yes" class="hljs language-python"><span class="hljs-keyword">import</span> asyncio
+<span class="hljs-keyword">from</span> crawl4ai <span class="hljs-keyword">import</span> AsyncWebCrawler
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():
+    <span class="hljs-keyword">async</span> <span class="hljs-keyword">with</span> AsyncWebCrawler() <span class="hljs-keyword">as</span> crawler:
+        result = <span class="hljs-keyword">await</span> crawler.arun(<span class="hljs-string">"https://example.com"</span>)
+        <span class="hljs-built_in">print</span>(result.markdown[:<span class="hljs-number">300</span>])  <span class="hljs-comment"># Print first 300 chars</span>
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    asyncio.run(main())
+</code><button class="copy-code-button" type="button" aria-label="Copy code to clipboard" title="Copy code to clipboard">Copy</button></pre></div>
+<p><strong>What’s happening?</strong>
+- <strong><code>AsyncWebCrawler</code></strong> launches a headless browser (Chromium by default).
+- It fetches <code>https://example.com</code>.
+- Crawl4AI automatically converts the HTML into Markdown.</p>
+<p>You now have a simple, working crawl!</p>
+<hr>
+<h2 id="3-basic-configuration-light-introduction">3. Basic Configuration (Light Introduction)</h2>
+<p>Crawl4AI’s crawler can be heavily customized using two main classes:</p>
+<p>1. <strong><code>BrowserConfig</code></strong>: Controls browser behavior (headless or full UI, user agent, JavaScript toggles, etc.).<br>
+2. <strong><code>CrawlerRunConfig</code></strong>: Controls how each crawl runs (caching, extraction, timeouts, hooking, etc.).</p>
+<p>Below is an example with minimal usage:</p>
+<div class="highlight"><pre><span></span><code data-highlighted="yes" class="hljs language-python"><span class="hljs-keyword">import</span> asyncio
+<span class="hljs-keyword">from</span> crawl4ai <span class="hljs-keyword">import</span> AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():
+    browser_conf = BrowserConfig(headless=<span class="hljs-literal">True</span>)  <span class="hljs-comment"># or False to see the browser</span>
+    run_conf = CrawlerRunConfig(
+        cache_mode=CacheMode.BYPASS
+    )
+
+    <span class="hljs-keyword">async</span> <span class="hljs-keyword">with</span> AsyncWebCrawler(config=browser_conf) <span class="hljs-keyword">as</span> crawler:
+        result = <span class="hljs-keyword">await</span> crawler.arun(
+            url=<span class="hljs-string">"https://example.com"</span>,
+            config=run_conf
+        )
+        <span class="hljs-built_in">print</span>(result.markdown)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    asyncio.run(main())
+</code><button class="copy-code-button" type="button" aria-label="Copy code to clipboard" title="Copy code to clipboard">Copy</button></pre></div>
+<blockquote>
+<p>IMPORTANT: By default cache mode is set to <code>CacheMode.ENABLED</code>. So to have fresh content, you need to set it to <code>CacheMode.BYPASS</code></p>
+</blockquote>
+<p>We’ll explore more advanced config in later tutorials (like enabling proxies, PDF output, multi-tab sessions, etc.). For now, just note how you pass these objects to manage crawling.</p>
+<hr>
+<h2 id="4-generating-markdown-output">4. Generating Markdown Output</h2>
+<p>By default, Crawl4AI automatically generates Markdown from each crawled page. However, the exact output depends on whether you specify a <strong>markdown generator</strong> or <strong>content filter</strong>.</p>
+<ul>
+<li><strong><code>result.markdown</code></strong>:<br>
+  The direct HTML-to-Markdown conversion.  </li>
+<li><strong><code>result.markdown.fit_markdown</code></strong>:<br>
+  The same content after applying any configured <strong>content filter</strong> (e.g., <code>PruningContentFilter</code>).</li>
+</ul>
+<h3 id="example-using-a-filter-with-defaultmarkdowngenerator">Example: Using a Filter with <code>DefaultMarkdownGenerator</code></h3>
+<div class="highlight"><pre><span></span><code data-highlighted="yes" class="hljs language-python"><span class="hljs-keyword">from</span> crawl4ai <span class="hljs-keyword">import</span> AsyncWebCrawler, CrawlerRunConfig
+<span class="hljs-keyword">from</span> crawl4ai.content_filter_strategy <span class="hljs-keyword">import</span> PruningContentFilter
+<span class="hljs-keyword">from</span> crawl4ai.markdown_generation_strategy <span class="hljs-keyword">import</span> DefaultMarkdownGenerator
+
+md_generator = DefaultMarkdownGenerator(
+    content_filter=PruningContentFilter(threshold=<span class="hljs-number">0.4</span>, threshold_type=<span class="hljs-string">"fixed"</span>)
+)
+
+config = CrawlerRunConfig(
+    cache_mode=CacheMode.BYPASS,
+    markdown_generator=md_generator
+)
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">with</span> AsyncWebCrawler() <span class="hljs-keyword">as</span> crawler:
+    result = <span class="hljs-keyword">await</span> crawler.arun(<span class="hljs-string">"https://news.ycombinator.com"</span>, config=config)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Raw Markdown length:"</span>, <span class="hljs-built_in">len</span>(result.markdown.raw_markdown))
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Fit Markdown length:"</span>, <span class="hljs-built_in">len</span>(result.markdown.fit_markdown))
+</code><button class="copy-code-button" type="button" aria-label="Copy code to clipboard" title="Copy code to clipboard">Copy</button></pre></div>
+<p><strong>Note</strong>: If you do <strong>not</strong> specify a content filter or markdown generator, you’ll typically see only the raw Markdown. <code>PruningContentFilter</code> may adds around <code>50ms</code> in processing time. We’ll dive deeper into these strategies in a dedicated <strong>Markdown Generation</strong> tutorial.</p>
+<hr>
+<h2 id="5-simple-data-extraction-css-based">5. Simple Data Extraction (CSS-based)</h2>
+<p>Crawl4AI can also extract structured data (JSON) using CSS or XPath selectors. Below is a minimal CSS-based example:</p>
+<blockquote>
+<p><strong>New!</strong> Crawl4AI now provides a powerful utility to automatically generate extraction schemas using LLM. This is a one-time cost that gives you a reusable schema for fast, LLM-free extractions:</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code data-highlighted="yes" class="hljs language-python"><span class="hljs-keyword">from</span> crawl4ai <span class="hljs-keyword">import</span> JsonCssExtractionStrategy
+<span class="hljs-keyword">from</span> crawl4ai <span class="hljs-keyword">import</span> LLMConfig
+
+<span class="hljs-comment"># Generate a schema (one-time cost)</span>
+html = <span class="hljs-string">"&lt;div class='product'&gt;&lt;h2&gt;Gaming Laptop&lt;/h2&gt;&lt;span class='price'&gt;$999.99&lt;/span&gt;&lt;/div&gt;"</span>
+
+<span class="hljs-comment"># Using OpenAI (requires API token)</span>
+schema = JsonCssExtractionStrategy.generate_schema(
+    html,
+    llm_config = LLMConfig(provider=<span class="hljs-string">"openai/gpt-4o"</span>,api_token=<span class="hljs-string">"your-openai-token"</span>)  <span class="hljs-comment"># Required for OpenAI</span>
+)
+
+<span class="hljs-comment"># Or using Ollama (open source, no token needed)</span>
+schema = JsonCssExtractionStrategy.generate_schema(
+    html,
+    llm_config = LLMConfig(provider=<span class="hljs-string">"ollama/llama3.3"</span>, api_token=<span class="hljs-literal">None</span>)  <span class="hljs-comment"># Not needed for Ollama</span>
+)
+
+<span class="hljs-comment"># Use the schema for fast, repeated extractions</span>
+strategy = JsonCssExtractionStrategy(schema)
+</code><button class="copy-code-button" type="button" aria-label="Copy code to clipboard" title="Copy code to clipboard">Copy</button></pre></div>
+<p>For a complete guide on schema generation and advanced usage, see <a href="../../extraction/no-llm-strategies/">No-LLM Extraction Strategies</a>.</p>
+<p>Here's a basic extraction example:</p>
+<div class="highlight"><pre><span></span><code data-highlighted="yes" class="hljs language-python"><span class="hljs-keyword">import</span> asyncio
+<span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">from</span> crawl4ai <span class="hljs-keyword">import</span> AsyncWebCrawler, CrawlerRunConfig, CacheMode
+<span class="hljs-keyword">from</span> crawl4ai <span class="hljs-keyword">import</span> JsonCssExtractionStrategy
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():
+    schema = {
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"Example Items"</span>,
+        <span class="hljs-string">"baseSelector"</span>: <span class="hljs-string">"div.item"</span>,
+        <span class="hljs-string">"fields"</span>: [
+            {<span class="hljs-string">"name"</span>: <span class="hljs-string">"title"</span>, <span class="hljs-string">"selector"</span>: <span class="hljs-string">"h2"</span>, <span class="hljs-string">"type"</span>: <span class="hljs-string">"text"</span>},
+            {<span class="hljs-string">"name"</span>: <span class="hljs-string">"link"</span>, <span class="hljs-string">"selector"</span>: <span class="hljs-string">"a"</span>, <span class="hljs-string">"type"</span>: <span class="hljs-string">"attribute"</span>, <span class="hljs-string">"attribute"</span>: <span class="hljs-string">"href"</span>}
+        ]
+    }
+
+    raw_html = <span class="hljs-string">"&lt;div class='item'&gt;&lt;h2&gt;Item 1&lt;/h2&gt;&lt;a href='https://example.com/item1'&gt;Link 1&lt;/a&gt;&lt;/div&gt;"</span>
+
+    <span class="hljs-keyword">async</span> <span class="hljs-keyword">with</span> AsyncWebCrawler() <span class="hljs-keyword">as</span> crawler:
+        result = <span class="hljs-keyword">await</span> crawler.arun(
+            url=<span class="hljs-string">"raw://"</span> + raw_html,
+            config=CrawlerRunConfig(
+                cache_mode=CacheMode.BYPASS,
+                extraction_strategy=JsonCssExtractionStrategy(schema)
+            )
+        )
+        <span class="hljs-comment"># The JSON output is stored in 'extracted_content'</span>
+        data = json.loads(result.extracted_content)
+        <span class="hljs-built_in">print</span>(data)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    asyncio.run(main())
+</code><button class="copy-code-button" type="button" aria-label="Copy code to clipboard" title="Copy code to clipboard">Copy</button></pre></div>
+<p><strong>Why is this helpful?</strong>
+- Great for repetitive page structures (e.g., item listings, articles).
+- No AI usage or costs.
+- The crawler returns a JSON string you can parse or store.</p>
+<blockquote>
+<p>Tips: You can pass raw HTML to the crawler instead of a URL. To do so, prefix the HTML with <code>raw://</code>.</p>
+</blockquote>
+<hr>
+<h2 id="6-simple-data-extraction-llm-based">6. Simple Data Extraction (LLM-based)</h2>
+<p>For more complex or irregular pages, a language model can parse text intelligently into a structure you define. Crawl4AI supports <strong>open-source</strong> or <strong>closed-source</strong> providers:</p>
+<ul>
+<li><strong>Open-Source Models</strong> (e.g., <code>ollama/llama3.3</code>, <code>no_token</code>)  </li>
+<li><strong>OpenAI Models</strong> (e.g., <code>openai/gpt-4</code>, requires <code>api_token</code>)  </li>
+<li>Or any provider supported by the underlying library</li>
+</ul>
+<p>Below is an example using <strong>open-source</strong> style (no token) and closed-source:</p>
+<div class="highlight"><pre><span></span><code data-highlighted="yes" class="hljs language-python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">import</span> asyncio
+<span class="hljs-keyword">from</span> pydantic <span class="hljs-keyword">import</span> BaseModel, Field
+<span class="hljs-keyword">from</span> crawl4ai <span class="hljs-keyword">import</span> AsyncWebCrawler, CrawlerRunConfig, LLMConfig
+<span class="hljs-keyword">from</span> crawl4ai <span class="hljs-keyword">import</span> LLMExtractionStrategy
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">OpenAIModelFee</span>(<span class="hljs-title class_ inherited__">BaseModel</span>):
+    model_name: <span class="hljs-built_in">str</span> = Field(..., description=<span class="hljs-string">"Name of the OpenAI model."</span>)
+    input_fee: <span class="hljs-built_in">str</span> = Field(..., description=<span class="hljs-string">"Fee for input token for the OpenAI model."</span>)
+    output_fee: <span class="hljs-built_in">str</span> = Field(
+        ..., description=<span class="hljs-string">"Fee for output token for the OpenAI model."</span>
+    )
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">extract_structured_data_using_llm</span>(<span class="hljs-params">
+    provider: <span class="hljs-built_in">str</span>, api_token: <span class="hljs-built_in">str</span> = <span class="hljs-literal">None</span>, extra_headers: <span class="hljs-type">Dict</span>[<span class="hljs-built_in">str</span>, <span class="hljs-built_in">str</span>] = <span class="hljs-literal">None</span>
+</span>):
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"\n--- Extracting Structured Data with <span class="hljs-subst">{provider}</span> ---"</span>)
+
+    <span class="hljs-keyword">if</span> api_token <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span> <span class="hljs-keyword">and</span> provider != <span class="hljs-string">"ollama"</span>:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"API token is required for <span class="hljs-subst">{provider}</span>. Skipping this example."</span>)
+        <span class="hljs-keyword">return</span>
+
+    browser_config = BrowserConfig(headless=<span class="hljs-literal">True</span>)
+
+    extra_args = {<span class="hljs-string">"temperature"</span>: <span class="hljs-number">0</span>, <span class="hljs-string">"top_p"</span>: <span class="hljs-number">0.9</span>, <span class="hljs-string">"max_tokens"</span>: <span class="hljs-number">2000</span>}
+    <span class="hljs-keyword">if</span> extra_headers:
+        extra_args[<span class="hljs-string">"extra_headers"</span>] = extra_headers
+
+    crawler_config = CrawlerRunConfig(
+        cache_mode=CacheMode.BYPASS,
+        word_count_threshold=<span class="hljs-number">1</span>,
+        page_timeout=<span class="hljs-number">80000</span>,
+        extraction_strategy=LLMExtractionStrategy(
+            llm_config = LLMConfig(provider=provider,api_token=api_token),
+            schema=OpenAIModelFee.model_json_schema(),
+            extraction_type=<span class="hljs-string">"schema"</span>,
+            instruction=<span class="hljs-string">"""From the crawled content, extract all mentioned model names along with their fees for input and output tokens. 
+            Do not miss any models in the entire content."""</span>,
+            extra_args=extra_args,
+        ),
+    )
+
+    <span class="hljs-keyword">async</span> <span class="hljs-keyword">with</span> AsyncWebCrawler(config=browser_config) <span class="hljs-keyword">as</span> crawler:
+        result = <span class="hljs-keyword">await</span> crawler.arun(
+            url=<span class="hljs-string">"https://openai.com/api/pricing/"</span>, config=crawler_config
+        )
+        <span class="hljs-built_in">print</span>(result.extracted_content)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+
+    asyncio.run(
+        extract_structured_data_using_llm(
+            provider=<span class="hljs-string">"openai/gpt-4o"</span>, api_token=os.getenv(<span class="hljs-string">"OPENAI_API_KEY"</span>)
+        )
+    )
+</code><button class="copy-code-button" type="button" aria-label="Copy code to clipboard" title="Copy code to clipboard">Copy</button></pre></div>
+<p><strong>What’s happening?</strong>
+- We define a Pydantic schema (<code>PricingInfo</code>) describing the fields we want.
+- The LLM extraction strategy uses that schema and your instructions to transform raw text into structured JSON.
+- Depending on the <strong>provider</strong> and <strong>api_token</strong>, you can use local models or a remote API.</p>
+<hr>
+<h2 id="7-adaptive-crawling-new">7. Adaptive Crawling (New!)</h2>
+<p>Crawl4AI now includes intelligent adaptive crawling that automatically determines when sufficient information has been gathered. Here's a quick example:</p>
+<div class="highlight"><pre><span></span><code data-highlighted="yes" class="hljs language-python"><span class="hljs-keyword">import</span> asyncio
+<span class="hljs-keyword">from</span> crawl4ai <span class="hljs-keyword">import</span> AsyncWebCrawler, AdaptiveCrawler
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">adaptive_example</span>():
+    <span class="hljs-keyword">async</span> <span class="hljs-keyword">with</span> AsyncWebCrawler() <span class="hljs-keyword">as</span> crawler:
+        adaptive = AdaptiveCrawler(crawler)
+
+        <span class="hljs-comment"># Start adaptive crawling</span>
+        result = <span class="hljs-keyword">await</span> adaptive.digest(
+            start_url=<span class="hljs-string">"https://docs.python.org/3/"</span>,
+            query=<span class="hljs-string">"async context managers"</span>
+        )
+
+        <span class="hljs-comment"># View results</span>
+        adaptive.print_stats()
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Crawled <span class="hljs-subst">{<span class="hljs-built_in">len</span>(result.crawled_urls)}</span> pages"</span>)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Achieved <span class="hljs-subst">{adaptive.confidence:<span class="hljs-number">.0</span>%}</span> confidence"</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    asyncio.run(adaptive_example())
+</code><button class="copy-code-button" type="button" aria-label="Copy code to clipboard" title="Copy code to clipboard">Copy</button></pre></div>
+<p><strong>What's special about adaptive crawling?</strong>
+- <strong>Automatic stopping</strong>: Stops when sufficient information is gathered
+- <strong>Intelligent link selection</strong>: Follows only relevant links
+- <strong>Confidence scoring</strong>: Know how complete your information is</p>
+<p><a href="../adaptive-crawling/">Learn more about Adaptive Crawling →</a></p>
+<hr>
+<h2 id="8-multi-url-concurrency-preview">8. Multi-URL Concurrency (Preview)</h2>
+<p>If you need to crawl multiple URLs in <strong>parallel</strong>, you can use <code>arun_many()</code>. By default, Crawl4AI employs a <strong>MemoryAdaptiveDispatcher</strong>, automatically adjusting concurrency based on system resources. Here’s a quick glimpse:</p>
+<div class="highlight"><pre><span></span><code data-highlighted="yes" class="hljs language-python"><span class="hljs-keyword">import</span> asyncio
+<span class="hljs-keyword">from</span> crawl4ai <span class="hljs-keyword">import</span> AsyncWebCrawler, CrawlerRunConfig, CacheMode
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">quick_parallel_example</span>():
+    urls = [
+        <span class="hljs-string">"https://example.com/page1"</span>,
+        <span class="hljs-string">"https://example.com/page2"</span>,
+        <span class="hljs-string">"https://example.com/page3"</span>
+    ]
+
+    run_conf = CrawlerRunConfig(
+        cache_mode=CacheMode.BYPASS,
+        stream=<span class="hljs-literal">True</span>  <span class="hljs-comment"># Enable streaming mode</span>
+    )
+
+    <span class="hljs-keyword">async</span> <span class="hljs-keyword">with</span> AsyncWebCrawler() <span class="hljs-keyword">as</span> crawler:
+        <span class="hljs-comment"># Stream results as they complete</span>
+        <span class="hljs-keyword">async</span> <span class="hljs-keyword">for</span> result <span class="hljs-keyword">in</span> <span class="hljs-keyword">await</span> crawler.arun_many(urls, config=run_conf):
+            <span class="hljs-keyword">if</span> result.success:
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">f"[OK] <span class="hljs-subst">{result.url}</span>, length: <span class="hljs-subst">{<span class="hljs-built_in">len</span>(result.markdown.raw_markdown)}</span>"</span>)
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">f"[ERROR] <span class="hljs-subst">{result.url}</span> =&gt; <span class="hljs-subst">{result.error_message}</span>"</span>)
+
+        <span class="hljs-comment"># Or get all results at once (default behavior)</span>
+        run_conf = run_conf.clone(stream=<span class="hljs-literal">False</span>)
+        results = <span class="hljs-keyword">await</span> crawler.arun_many(urls, config=run_conf)
+        <span class="hljs-keyword">for</span> res <span class="hljs-keyword">in</span> results:
+            <span class="hljs-keyword">if</span> res.success:
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">f"[OK] <span class="hljs-subst">{res.url}</span>, length: <span class="hljs-subst">{<span class="hljs-built_in">len</span>(res.markdown.raw_markdown)}</span>"</span>)
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">f"[ERROR] <span class="hljs-subst">{res.url}</span> =&gt; <span class="hljs-subst">{res.error_message}</span>"</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    asyncio.run(quick_parallel_example())
+</code><button class="copy-code-button" type="button" aria-label="Copy code to clipboard" title="Copy code to clipboard">Copy</button></pre></div>
+<p>The example above shows two ways to handle multiple URLs:
+1. <strong>Streaming mode</strong> (<code>stream=True</code>): Process results as they become available using <code>async for</code>
+2. <strong>Batch mode</strong> (<code>stream=False</code>): Wait for all results to complete</p>
+<p>For more advanced concurrency (e.g., a <strong>semaphore-based</strong> approach, <strong>adaptive memory usage throttling</strong>, or customized rate limiting), see <a href="../../advanced/multi-url-crawling/">Advanced Multi-URL Crawling</a>.</p>
+<hr>
+<h2 id="8-dynamic-content-example">8. Dynamic Content Example</h2>
+<p>Some sites require multiple “page clicks” or dynamic JavaScript updates. Below is an example showing how to <strong>click</strong> a “Next Page” button and wait for new commits to load on GitHub, using <strong><code>BrowserConfig</code></strong> and <strong><code>CrawlerRunConfig</code></strong>:</p>
+<div class="highlight"><pre><span></span><code data-highlighted="yes" class="hljs language-python"><span class="hljs-keyword">import</span> asyncio
+<span class="hljs-keyword">from</span> crawl4ai <span class="hljs-keyword">import</span> AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+<span class="hljs-keyword">from</span> crawl4ai <span class="hljs-keyword">import</span> JsonCssExtractionStrategy
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">extract_structured_data_using_css_extractor</span>():
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"\n--- Using JsonCssExtractionStrategy for Fast Structured Output ---"</span>)
+    schema = {
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"KidoCode Courses"</span>,
+        <span class="hljs-string">"baseSelector"</span>: <span class="hljs-string">"section.charge-methodology .w-tab-content &gt; div"</span>,
+        <span class="hljs-string">"fields"</span>: [
+            {
+                <span class="hljs-string">"name"</span>: <span class="hljs-string">"section_title"</span>,
+                <span class="hljs-string">"selector"</span>: <span class="hljs-string">"h3.heading-50"</span>,
+                <span class="hljs-string">"type"</span>: <span class="hljs-string">"text"</span>,
+            },
+            {
+                <span class="hljs-string">"name"</span>: <span class="hljs-string">"section_description"</span>,
+                <span class="hljs-string">"selector"</span>: <span class="hljs-string">".charge-content"</span>,
+                <span class="hljs-string">"type"</span>: <span class="hljs-string">"text"</span>,
+            },
+            {
+                <span class="hljs-string">"name"</span>: <span class="hljs-string">"course_name"</span>,
+                <span class="hljs-string">"selector"</span>: <span class="hljs-string">".text-block-93"</span>,
+                <span class="hljs-string">"type"</span>: <span class="hljs-string">"text"</span>,
+            },
+            {
+                <span class="hljs-string">"name"</span>: <span class="hljs-string">"course_description"</span>,
+                <span class="hljs-string">"selector"</span>: <span class="hljs-string">".course-content-text"</span>,
+                <span class="hljs-string">"type"</span>: <span class="hljs-string">"text"</span>,
+            },
+            {
+                <span class="hljs-string">"name"</span>: <span class="hljs-string">"course_icon"</span>,
+                <span class="hljs-string">"selector"</span>: <span class="hljs-string">".image-92"</span>,
+                <span class="hljs-string">"type"</span>: <span class="hljs-string">"attribute"</span>,
+                <span class="hljs-string">"attribute"</span>: <span class="hljs-string">"src"</span>,
+            },
+        ],
+    }
+
+    browser_config = BrowserConfig(headless=<span class="hljs-literal">True</span>, java_script_enabled=<span class="hljs-literal">True</span>)
+
+    js_click_tabs = <span class="hljs-string">"""
+    (async () =&gt; {
+        const tabs = document.querySelectorAll("section.charge-methodology .tabs-menu-3 &gt; div");
+        for(let tab of tabs) {
+            tab.scrollIntoView();
+            tab.click();
+            await new Promise(r =&gt; setTimeout(r, 500));
+        }
+    })();
+    """</span>
+
+    crawler_config = CrawlerRunConfig(
+        cache_mode=CacheMode.BYPASS,
+        extraction_strategy=JsonCssExtractionStrategy(schema),
+        js_code=[js_click_tabs],
+    )
+
+    <span class="hljs-keyword">async</span> <span class="hljs-keyword">with</span> AsyncWebCrawler(config=browser_config) <span class="hljs-keyword">as</span> crawler:
+        result = <span class="hljs-keyword">await</span> crawler.arun(
+            url=<span class="hljs-string">"https://www.kidocode.com/degrees/technology"</span>, config=crawler_config
+        )
+
+        companies = json.loads(result.extracted_content)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Successfully extracted <span class="hljs-subst">{<span class="hljs-built_in">len</span>(companies)}</span> companies"</span>)
+        <span class="hljs-built_in">print</span>(json.dumps(companies[<span class="hljs-number">0</span>], indent=<span class="hljs-number">2</span>))
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():
+    <span class="hljs-keyword">await</span> extract_structured_data_using_css_extractor()
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    asyncio.run(main())
+</code><button class="copy-code-button" type="button" aria-label="Copy code to clipboard" title="Copy code to clipboard">Copy</button></pre></div>
+<p><strong>Key Points</strong>:</p>
+<ul>
+<li><strong><code>BrowserConfig(headless=False)</code></strong>: We want to watch it click “Next Page.”  </li>
+<li><strong><code>CrawlerRunConfig(...)</code></strong>: We specify the extraction strategy, pass <code>session_id</code> to reuse the same page.  </li>
+<li><strong><code>js_code</code></strong> and <strong><code>wait_for</code></strong> are used for subsequent pages (<code>page &gt; 0</code>) to click the “Next” button and wait for new commits to load.  </li>
+<li><strong><code>js_only=True</code></strong> indicates we’re not re-navigating but continuing the existing session.  </li>
+<li>Finally, we call <code>kill_session()</code> to clean up the page and browser session.</li>
+</ul>
+<hr>
+<h2 id="9-next-steps">9. Next Steps</h2>
+<p>Congratulations! You have:</p>
+<ol>
+<li>Performed a basic crawl and printed Markdown.  </li>
+<li>Used <strong>content filters</strong> with a markdown generator.  </li>
+<li>Extracted JSON via <strong>CSS</strong> or <strong>LLM</strong> strategies.  </li>
+<li>Handled <strong>dynamic</strong> pages with JavaScript triggers.</li>
+</ol>
+<p>If you’re ready for more, check out:</p>
+<ul>
+<li><strong>Installation</strong>: A deeper dive into advanced installs, Docker usage (experimental), or optional dependencies.  </li>
+<li><strong>Hooks &amp; Auth</strong>: Learn how to run custom JavaScript or handle logins with cookies, local storage, etc.  </li>
+<li><strong>Deployment</strong>: Explore ephemeral testing in Docker or plan for the upcoming stable Docker release.  </li>
+<li><strong>Browser Management</strong>: Delve into user simulation, stealth modes, and concurrency best practices.  </li>
+</ul>
+<p>Crawl4AI is a powerful, flexible tool. Enjoy building out your scrapers, data pipelines, or AI-driven extraction flows. Happy crawling!</p>
+</section>
+
+            </main>
+        <aside id="toc-sidebar" style=""><h4>On this page</h4><ul><li class="toc-level-2"><a href="#1-introduction">1. Introduction</a></li><li class="toc-level-2"><a href="#2-your-first-crawl">2. Your First Crawl</a></li><li class="toc-level-2"><a href="#3-basic-configuration-light-introduction">3. Basic Configuration (Light Introduction)</a></li><li class="toc-level-2"><a href="#4-generating-markdown-output">4. Generating Markdown Output</a></li><li class="toc-level-3"><a href="#example-using-a-filter-with-defaultmarkdowngenerator">Example: Using a Filter with DefaultMarkdownGenerator</a></li><li class="toc-level-2"><a href="#5-simple-data-extraction-css-based">5. Simple Data Extraction (CSS-based)</a></li><li class="toc-level-2"><a href="#6-simple-data-extraction-llm-based">6. Simple Data Extraction (LLM-based)</a></li><li class="toc-level-2"><a href="#7-adaptive-crawling-new">7. Adaptive Crawling (New!)</a></li><li class="toc-level-2"><a href="#8-multi-url-concurrency-preview">8. Multi-URL Concurrency (Preview)</a></li><li class="toc-level-2"><a href="#8-dynamic-content-example">8. Dynamic Content Example</a></li><li class="toc-level-2"><a href="#9-next-steps">9. Next Steps</a></li></ul></aside></div>
+        <hr>
+<feedback-button project="w8plzp8vjp" button-style="dark" button-position="center-right" modal-position="sidebar-right" session-id="w71o9i8phtf" class="hydrated">
+    &gt;
+    Feedback
+</feedback-button>
+
+    </div>
+
+    
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="alertdialog" aria-modal="true" aria-labelledby="searchModalLabel">
+    <div class="modal-dialog modal-lg" role="search">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchModalLabel">Search</h5>
+                <button type="button" class="close btn btn-default btn-ghost" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p id="searchInputLabel">Type to start searching</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" aria-labelledby="searchInputLabel" placeholder="" id="mkdocs-search-query" title="Please enter search terms here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No document matches found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+
+
+<feedback-modal class="hydrated"></feedback-modal><a class="floating-ask-ai-button" href="/core/ask-ai/" title="Ask Crawl4AI Assistant" aria-label="Ask Crawl4AI Assistant">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"></path>
+        </svg>
+        <span>Ask AI</span>
+    </a><div class="mobile-menu-backdrop" style="display: none;"></div></body></html>
